@@ -10,6 +10,7 @@
 | [04_runner.md](./04_runner.md) | コード実行エンジンの仕組み（iframe sandbox） |
 | [05_quiz_screen.md](./05_quiz_screen.md) | 問題画面の実装解説 |
 | [06_app_tsx.md](./06_app_tsx.md) | 全体の状態管理・画面切り替え |
+| [07_changes.md](./07_changes.md) | 変更・修正の記録（ダークモード・問題刷新・文字コードバグ修正） |
 
 ---
 
