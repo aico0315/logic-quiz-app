@@ -1,164 +1,185 @@
 import type { Question } from "../types";
 
 export const questions: Question[] = [
+  // Junior - 配列の操作（6問）
   {
     id: "1",
     level: "junior",
     category: "配列の操作",
-    question: "数値の配列 `[3, 1, 4, 1, 5, 9, 2, 6]` から偶数だけを取り出して `console.log` で出力してください。",
-    starterCode: `const numbers = [3, 1, 4, 1, 5, 9, 2, 6];
+    question: "ECサイトの商品一覧から、価格が3000円以上の商品価格だけを取り出して `console.log` で出力してください。",
+    starterCode: `const prices = [1200, 3500, 800, 5000, 2000];
 
 // ここにコードを書く
 `,
-    expected: "[4,2,6]",
-    explanation: "`filter` を使って条件に合う要素だけ取り出せます。\n\n```js\nconst result = numbers.filter(n => n % 2 === 0);\nconsole.log(result);\n```\n\n`n % 2 === 0` は「2で割り切れる = 偶数」という条件です。",
+    expected: "[3500,5000]",
+    explanation: "`filter` で条件に合う要素だけ取り出せます。\n\n```js\nconst result = prices.filter(p => p >= 3000);\nconsole.log(result);\n```\n\n`p >= 3000` が true の要素だけが新しい配列に残ります。",
   },
   {
     id: "2",
     level: "junior",
     category: "配列の操作",
-    question: "数値の配列 `[1, 2, 3, 4, 5]` の全要素を2倍にした新しい配列を `console.log` で出力してください。",
-    starterCode: `const numbers = [1, 2, 3, 4, 5];
+    question: "ECサイトの商品価格リストに消費税（1.1倍）をかけた、税込み価格の配列を `console.log` で出力してください。",
+    starterCode: `const prices = [1000, 2000, 3000, 4000, 5000];
 
 // ここにコードを書く
 `,
-    expected: "[2,4,6,8,10]",
-    explanation: "`map` を使って各要素を変換できます。\n\n```js\nconst result = numbers.map(n => n * 2);\nconsole.log(result);\n```\n\n`map` は元の配列を変えず、変換した新しい配列を返します。",
+    expected: "[1100,2200,3300,4400,5500]",
+    explanation: "`map` で各要素を変換した新しい配列を作れます。\n\n```js\nconst result = prices.map(p => p * 1.1);\nconsole.log(result);\n```\n\n`map` は元の配列を変えず、変換後の新しい配列を返します。",
   },
   {
     id: "3",
     level: "junior",
     category: "配列の操作",
-    question: "数値の配列 `[5, 3, 8, 1, 9, 2]` を小さい順に並び替えて `console.log` で出力してください。",
-    starterCode: `const numbers = [5, 3, 8, 1, 9, 2];
+    question: "管理画面で表示する月別売上を、金額が低い順に並び替えて `console.log` で出力してください。",
+    starterCode: `const sales = [45000, 12000, 89000, 34000, 67000];
 
 // ここにコードを書く
 `,
-    expected: "[1,2,3,5,8,9]",
-    explanation: "`sort` に比較関数を渡すと数値順に並び替えられます。\n\n```js\nconst result = numbers.sort((a, b) => a - b);\nconsole.log(result);\n```\n\n`a - b` が負のとき a を前に、正のとき b を前に並べます。引数なしの `sort()` は文字列順になるので注意。",
+    expected: "[12000,34000,45000,67000,89000]",
+    explanation: "`sort` に比較関数を渡すと数値順に並び替えられます。\n\n```js\nconst result = sales.sort((a, b) => a - b);\nconsole.log(result);\n```\n\n引数なしの `sort()` は文字列順になるため、数値のソートでは必ず比較関数を渡しましょう。",
   },
   {
     id: "4",
     level: "junior",
     category: "配列の操作",
-    question: "数値の配列 `[1, 2, 3, 4, 5]` の合計値を `console.log` で出力してください。",
-    starterCode: `const numbers = [1, 2, 3, 4, 5];
+    question: "ECサイトのカートに入っている商品の合計金額を計算して `console.log` で出力してください。",
+    starterCode: `const cart = [
+  { name: 'Tシャツ', price: 2500 },
+  { name: 'ジーンズ', price: 6800 },
+  { name: 'スニーカー', price: 9800 },
+];
 
 // ここにコードを書く
 `,
-    expected: "15",
-    explanation: "`reduce` を使って配列を1つの値にまとめられます。\n\n```js\nconst result = numbers.reduce((acc, n) => acc + n, 0);\nconsole.log(result);\n```\n\n`acc` は累積値、`0` が初期値です。1+2+3+4+5 = 15 が返ります。",
+    expected: "19100",
+    explanation: "`reduce` で配列を1つの値にまとめられます。\n\n```js\nconst result = cart.reduce((acc, item) => acc + item.price, 0);\nconsole.log(result);\n```\n\n`acc` が合計の累積値で、`0` が初期値です。各 `item.price` を順番に足していきます。",
   },
   {
     id: "5",
     level: "junior",
     category: "配列の操作",
-    question: "配列 `[1, 2, 2, 3, 3, 3, 4]` から重複を取り除いた配列を `console.log` で出力してください。",
-    starterCode: `const numbers = [1, 2, 2, 3, 3, 3, 4];
+    question: "ブログ記事に付けられたタグ一覧から、重複を取り除いた配列を `console.log` で出力してください。",
+    starterCode: `const tags = ['JavaScript', 'React', 'JavaScript', 'TypeScript', 'React'];
 
 // ここにコードを書く
 `,
-    expected: "[1,2,3,4]",
-    explanation: "`Set` はユニークな値だけを保持するデータ構造です。\n\n```js\nconst result = [...new Set(numbers)];\nconsole.log(result);\n```\n\n`new Set(numbers)` で重複が除去され、スプレッド構文 `[...]` で配列に戻します。",
-  },
-  {
-    id: "6",
-    level: "junior",
-    category: "文字列の操作",
-    question: "文字列 `'Hello World'` を単語ごとに分割した配列を `console.log` で出力してください。",
-    starterCode: `const str = 'Hello World';
-
-// ここにコードを書く
-`,
-    expected: '["Hello","World"]',
-    explanation: "`split` で文字列を区切り文字で分割できます。\n\n```js\nconst result = str.split(' ');\nconsole.log(result);\n```\n\nスペースを区切り文字にすることで単語ごとに分割されます。",
-  },
-  {
-    id: "7",
-    level: "junior",
-    category: "文字列の操作",
-    question: "文字列の配列 `['apple', 'banana', 'cherry']` を `','` で繋いだ1つの文字列を `console.log` で出力してください。",
-    starterCode: `const fruits = ['apple', 'banana', 'cherry'];
-
-// ここにコードを書く
-`,
-    expected: '"apple,banana,cherry"',
-    explanation: "`join` で配列を1つの文字列に結合できます。\n\n```js\nconst result = fruits.join(',');\nconsole.log(result);\n```\n\n引数に渡した文字列が各要素の間に挿入されます。",
-  },
-  {
-    id: "8",
-    level: "junior",
-    category: "オブジェクトの操作",
-    question: "オブジェクト `{ name: 'Alice', age: 25, city: 'Tokyo' }` のキー一覧を配列で `console.log` してください。",
-    starterCode: `const person = { name: 'Alice', age: 25, city: 'Tokyo' };
-
-// ここにコードを書く
-`,
-    expected: '["name","age","city"]',
-    explanation: "`Object.keys` でオブジェクトのキー一覧を配列で取得できます。\n\n```js\nconst result = Object.keys(person);\nconsole.log(result);\n```",
-  },
-  {
-    id: "9",
-    level: "junior",
-    category: "条件分岐",
-    question: "数値の配列 `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]` の中から3の倍数だけを取り出して `console.log` で出力してください。",
-    starterCode: `const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-// ここにコードを書く
-`,
-    expected: "[3,6,9]",
-    explanation: "`filter` と `%`（余り）を組み合わせます。\n\n```js\nconst result = numbers.filter(n => n % 3 === 0);\nconsole.log(result);\n```\n\n`n % 3 === 0` は「3で割り切れる = 3の倍数」という条件です。",
+    expected: '["JavaScript","React","TypeScript"]',
+    explanation: "`Set` はユニークな値だけを保持するデータ構造です。\n\n```js\nconst result = [...new Set(tags)];\nconsole.log(result);\n```\n\n`new Set(tags)` で重複が除去され、スプレッド構文 `[...]` で配列に戻します。",
   },
   {
     id: "10",
     level: "junior",
     category: "配列の操作",
-    question: "数値の配列 `[3, 1, 4, 1, 5, 9]` の中から最大値を `console.log` で出力してください。",
-    starterCode: `const numbers = [3, 1, 4, 1, 5, 9];
+    question: "ブログの日別ページビュー数から、最もアクセス数が多い日の数値を `console.log` で出力してください。",
+    starterCode: `const pageViews = [1240, 3850, 920, 5670, 2100];
 
 // ここにコードを書く
 `,
-    expected: "9",
-    explanation: "`Math.max` にスプレッド構文を組み合わせると配列の最大値が取れます。\n\n```js\nconst result = Math.max(...numbers);\nconsole.log(result);\n```\n\n`...numbers` で配列を個別の引数として展開しています。",
+    expected: "5670",
+    explanation: "`Math.max` にスプレッド構文を組み合わせると配列の最大値が取れます。\n\n```js\nconst result = Math.max(...pageViews);\nconsole.log(result);\n```\n\n`...pageViews` で配列を個別の引数として展開しています。",
   },
-  // middle
+  // Junior - 文字列の操作（2問）
+  {
+    id: "6",
+    level: "junior",
+    category: "文字列の操作",
+    question: "ブログ記事のタグがカンマ区切りの文字列で保存されています。これを分割して配列にし、`console.log` で出力してください。",
+    starterCode: `const tagString = 'React,TypeScript,Vite,Node.js';
+
+// ここにコードを書く
+`,
+    expected: '["React","TypeScript","Vite","Node.js"]',
+    explanation: "`split` で文字列を区切り文字で分割できます。\n\n```js\nconst result = tagString.split(',');\nconsole.log(result);\n```\n\n区切り文字自体は結果に含まれません。",
+  },
+  {
+    id: "7",
+    level: "junior",
+    category: "文字列の操作",
+    question: "ECサイトの現在地を示すパンくずリストを、カテゴリの配列から ` / ` で繋いだ文字列にして `console.log` で出力してください。",
+    starterCode: `const breadcrumb = ['メンズ', 'トップス', 'セール'];
+
+// ここにコードを書く
+`,
+    expected: '"メンズ / トップス / セール"',
+    explanation: "`join` で配列を1つの文字列に結合できます。\n\n```js\nconst result = breadcrumb.join(' / ');\nconsole.log(result);\n```\n\n引数に渡した文字列が各要素の間に挿入されます。",
+  },
+  // Junior - オブジェクトの操作（1問）
+  {
+    id: "8",
+    level: "junior",
+    category: "オブジェクトの操作",
+    question: "管理画面でユーザー情報の入力フォームを動的に生成したい。ユーザーオブジェクトのフィールド名（キー）一覧を配列で `console.log` してください。",
+    starterCode: `const user = { id: 1, name: '田中太郎', email: 'tanaka@example.com', role: 'admin' };
+
+// ここにコードを書く
+`,
+    expected: '["id","name","email","role"]',
+    explanation: "`Object.keys` でオブジェクトのキー一覧を配列で取得できます。\n\n```js\nconst result = Object.keys(user);\nconsole.log(result);\n```\n\nフォームの項目を動的に生成したいときや、オブジェクトをループしたいときによく使います。",
+  },
+  // Junior - 条件分岐（1問）
+  {
+    id: "9",
+    level: "junior",
+    category: "条件分岐",
+    question: "ECサイトで在庫状況を表示したい。`stock` が1以上なら `'在庫あり'`、0なら `'在庫なし'` と `console.log` で出力してください。",
+    starterCode: `const stock = 0;
+
+// ここにコードを書く
+`,
+    expected: '"在庫なし"',
+    explanation: "三項演算子で条件によって値を切り替えられます。\n\n```js\nconst result = stock >= 1 ? '在庫あり' : '在庫なし';\nconsole.log(result);\n```\n\n`条件 ? trueのとき : falseのとき` という書き方です。if文よりも短く書けます。",
+  },
+  // Middle - 配列の操作（1問）
   {
     id: "11",
     level: "middle",
     category: "配列の操作",
-    question: "オブジェクトの配列から `age` が20以上の人の `name` だけを取り出した配列を `console.log` してください。",
-    starterCode: `const people = [
-  { name: 'Alice', age: 25 },
-  { name: 'Bob', age: 17 },
-  { name: 'Carol', age: 30 },
-  { name: 'Dave', age: 19 },
+    question: "SNSのユーザー一覧から、フォロワー数が1000以上のユーザー名だけを取り出した配列を `console.log` してください。",
+    starterCode: `const users = [
+  { name: '田中', followers: 1500 },
+  { name: '佐藤', followers: 320 },
+  { name: '鈴木', followers: 4200 },
+  { name: '山田', followers: 890 },
 ];
 
 // ここにコードを書く
 `,
-    expected: '["Alice","Carol"]',
-    explanation: "`filter` と `map` を組み合わせます。\n\n```js\nconst result = people\n  .filter(p => p.age >= 20)\n  .map(p => p.name);\nconsole.log(result);\n```\n\nメソッドチェーンで「絞り込み→変換」を一連の流れで書けます。",
+    expected: '["田中","鈴木"]',
+    explanation: "`filter` と `map` をメソッドチェーンで繋げます。\n\n```js\nconst result = users\n  .filter(u => u.followers >= 1000)\n  .map(u => u.name);\nconsole.log(result);\n```\n\n「絞り込み → 変換」の順番で処理することで、条件を満たすユーザーの名前だけを取り出せます。",
   },
+  // Middle - オブジェクトの操作（1問）
   {
     id: "12",
     level: "middle",
     category: "オブジェクトの操作",
-    question: "数値の配列 `[1, 2, 3, 4, 5, 6]` を偶数と奇数に分けたオブジェクト `{ even: [...], odd: [...] }` を `console.log` してください。",
-    starterCode: `const numbers = [1, 2, 3, 4, 5, 6];
+    question: "ECサイトの注文一覧を、`shipped`（発送済み）と `pending`（未発送）に分類した注文IDのリストオブジェクトを `console.log` してください。",
+    starterCode: `const orders = [
+  { id: 1, status: 'shipped' },
+  { id: 2, status: 'pending' },
+  { id: 3, status: 'shipped' },
+  { id: 4, status: 'pending' },
+  { id: 5, status: 'shipped' },
+];
 
 // ここにコードを書く
 `,
-    expected: '{"even":[2,4,6],"odd":[1,3,5]}',
-    explanation: "`reduce` でオブジェクトにまとめることができます。\n\n```js\nconst result = numbers.reduce(\n  (acc, n) => {\n    if (n % 2 === 0) acc.even.push(n);\n    else acc.odd.push(n);\n    return acc;\n  },\n  { even: [], odd: [] }\n);\nconsole.log(result);\n```",
+    expected: '{"shipped":[1,3,5],"pending":[2,4]}',
+    explanation: "`reduce` でオブジェクトにまとめられます。\n\n```js\nconst result = orders.reduce(\n  (acc, order) => {\n    acc[order.status].push(order.id);\n    return acc;\n  },\n  { shipped: [], pending: [] }\n);\nconsole.log(result);\n```\n\n初期値に `{ shipped: [], pending: [] }` を渡し、各注文のステータスに応じてIDを振り分けています。",
   },
+  // Middle - 非同期処理（1問）
   {
     id: "13",
     level: "middle",
     category: "非同期処理",
-    question: "1秒後に `'完了'` という文字列を返す Promise を作り、その結果を `console.log` してください。",
-    starterCode: `// ここにコードを書く
+    question: "商品情報を取得するAPIを模した関数 `fetchProduct` があります。これを呼び出して、取得した商品の `name` を `console.log` してください。",
+    starterCode: `const fetchProduct = () =>
+  new Promise(resolve =>
+    setTimeout(() => resolve({ id: 1, name: 'ワイヤレスイヤホン', price: 12800 }), 500)
+  );
+
+// ここにコードを書く
 `,
-    expected: '"完了"',
-    explanation: "`async/await` で非同期処理を書けます。\n\n```js\nconst wait = () => new Promise(resolve => setTimeout(() => resolve('完了'), 1000));\n\nasync function main() {\n  const result = await wait();\n  console.log(result);\n}\nmain();\n```",
+    expected: '"ワイヤレスイヤホン"',
+    explanation: "`async/await` で非同期処理の結果を受け取れます。\n\n```js\nasync function main() {\n  const product = await fetchProduct();\n  console.log(product.name);\n}\nmain();\n```\n\n`await` を使うことで Promise の完了を待ってから次の行に進めます。実際のAPI呼び出しも同じパターンで書きます。",
   },
 ];
