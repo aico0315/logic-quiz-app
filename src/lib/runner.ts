@@ -55,7 +55,7 @@ export function runCode(code: string): Promise<RunResult> {
       <\/script>
     `;
 
-    const blob = new Blob([html], { type: "text/html" });
+    const blob = new Blob([html], { type: "text/html; charset=utf-8" });
     iframe.src = URL.createObjectURL(blob);
   });
 }
