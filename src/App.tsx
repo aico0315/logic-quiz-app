@@ -59,13 +59,16 @@ export default function App() {
 
   return (
     <div className={styles.app}>
-      <button
-        className={styles.themeToggle}
-        onClick={() => setIsDark((d) => !d)}
-        aria-label={isDark ? "ライトモードに切り替え" : "ダークモードに切り替え"}
-      >
-        {isDark ? "☀️" : "🌙"}
-      </button>
+      <header className={styles.header}>
+        <span className={styles.logo}>Logic Quiz</span>
+        <button
+          className={styles.themeToggle}
+          onClick={() => setIsDark((d) => !d)}
+          aria-label={isDark ? "ライトモードに切り替え" : "ダークモードに切り替え"}
+        >
+          {isDark ? "☀️" : "🌙"}
+        </button>
+      </header>
       <main className={styles.main}>
         {screen === "menu" && <MenuScreen onStart={handleStart} />}
         {screen === "quiz" && quizQuestions.length > 0 && (
